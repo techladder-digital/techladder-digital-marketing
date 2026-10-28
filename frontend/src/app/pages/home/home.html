@@ -1,0 +1,180 @@
+<!-- 1. Hero -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container-fluid px-3 px-md-5">
+    <div class="row align-items-center g-5">
+      <div class="col-12 col-lg-6">
+        <span class="tl-eyebrow">TechLadder Digital Marketing</span>
+        <h1 id="hero-title" class="hero__title">{{ headline() }}</h1>
+        <p class="hero__sub">{{ subheading() }}</p>
+        <div class="hero__ctas">
+          <a class="tl-btn tl-btn--primary" routerLink="/services" fragment="digital-marketing">{{ i18n.t('home.ctaDm') }}</a>
+          <a class="tl-btn tl-btn--outline-light" routerLink="/services" fragment="website-software">{{ i18n.t('home.ctaWs') }}</a>
+          <a class="tl-btn tl-btn--light-link" routerLink="/contact" fragment="enquiry-form">
+            {{ i18n.t('home.ctaConsult') }} <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="hero__visual">
+          <img [src]="heroImage()" [alt]="i18n.t('home.heroAlt')" width="720" height="540" fetchpriority="high" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Introduction -->
+<section class="tl-section" aria-labelledby="intro-title">
+  <div class="container-fluid px-3 px-md-5">
+    <div class="row g-4 align-items-center">
+      <div class="col-12 col-lg-5">
+        <span class="tl-eyebrow">{{ i18n.t('home.introEyebrow') }}</span>
+        <h2 id="intro-title" class="tl-heading">{{ i18n.t('home.introTitle') }}</h2>
+      </div>
+      <div class="col-12 col-lg-7">
+        <p class="tl-lead mb-0">
+          {{ intro() }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+@if (loading()) {
+  <tl-loading-state [label]="i18n.t('home.loadingServices')" />
+} @else {
+  <!-- 3. Digital marketing preview -->
+  <section class="tl-section tl-section--tint" aria-labelledby="dm-title">
+    <div class="container-fluid px-3 px-md-5">
+      <div class="section-head">
+        <div>
+          <span class="tl-eyebrow">{{ i18n.t('home.pathA') }}</span>
+          <h2 id="dm-title" class="tl-heading">{{ i18n.t('footer.dm') }}</h2>
+          <p class="tl-lead">{{ i18n.t('home.dmLead') }}</p>
+        </div>
+        <a class="tl-btn tl-btn--outline" routerLink="/services" fragment="digital-marketing">{{ i18n.t('home.dmAll') }}</a>
+      </div>
+      <div class="row g-4">
+        @for (s of dmPreview(); track s.id) {
+          <div class="col-12 col-md-6 col-xl-4"><tl-service-card [service]="s" (learnMore)="openService($event)" /></div>
+        } @empty {
+          <div class="col-12"><tl-empty-state icon="campaign" [title]="i18n.t('home.dmEmptyTitle')">{{ i18n.t('home.dmEmptyText') }}</tl-empty-state></div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Website & software preview -->
+  <section class="tl-section tl-section--dark" aria-labelledby="ws-title">
+    <div class="container-fluid px-3 px-md-5">
+      <div class="section-head">
+        <div>
+          <span class="tl-eyebrow">{{ i18n.t('home.pathB') }}</span>
+          <h2 id="ws-title" class="tl-heading">{{ i18n.t('home.ctaWs') }}</h2>
+          <p class="tl-lead">{{ i18n.t('home.wsLead') }}</p>
+        </div>
+        <a class="tl-btn tl-btn--outline-light" routerLink="/services" fragment="website-software">{{ i18n.t('home.wsAll') }}</a>
+      </div>
+      <div class="row g-4">
+        @for (s of wsPreview(); track s.id) {
+          <div class="col-12 col-md-6 col-xl-4"><tl-service-card [service]="s" tone="dark" (learnMore)="openService($event)" /></div>
+        } @empty {
+          <div class="col-12"><p class="tl-lead">{{ i18n.t('home.wsEmpty') }}</p></div>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+<!-- 5. Why choose TechLadder -->
+<section class="tl-section" aria-labelledby="why-title">
+  <div class="container-fluid px-3 px-md-5">
+    <span class="tl-eyebrow">{{ i18n.t('home.whyEyebrow') }}</span>
+    <h2 id="why-title" class="tl-heading">{{ i18n.t('home.whyTitle') }}</h2>
+    <div class="row g-4 mt-1">
+      @for (r of reasons; track r.title) {
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="why">
+            <span class="why__icon" aria-hidden="true"><mat-icon>{{ r.icon }}</mat-icon></span>
+            <div>
+              <h3 class="why__title">{{ i18n.t(r.title) }}</h3>
+              <p class="why__text">{{ i18n.t(r.text) }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 6. Featured portfolio -->
+<section class="tl-section tl-section--tint" aria-labelledby="work-title">
+  <div class="container-fluid px-3 px-md-5">
+    <div class="section-head">
+      <div>
+        <span class="tl-eyebrow">{{ i18n.t('nav.portfolio') }}</span>
+        <h2 id="work-title" class="tl-heading">{{ i18n.t('home.workTitle') }}</h2>
+      </div>
+      <a class="tl-btn tl-btn--outline" routerLink="/portfolio">{{ i18n.t('home.workAll') }}</a>
+    </div>
+    <div class="row g-4">
+      @for (p of featured(); track p.id) {
+        <div class="col-12 col-md-6 col-xl-4"><tl-portfolio-card [project]="p" (open)="openProject($event)" /></div>
+      } @empty {
+        <div class="col-12"><tl-empty-state icon="collections" [title]="i18n.t('home.workEmptyTitle')">{{ i18n.t('home.workEmptyText') }}</tl-empty-state></div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 7. Customer feedback -->
+<section class="tl-section" aria-labelledby="fb-title">
+  <div class="container-fluid px-3 px-md-5">
+    <div class="section-head">
+      <div>
+        <span class="tl-eyebrow">{{ i18n.t('nav.feedback') }}</span>
+        <h2 id="fb-title" class="tl-heading">{{ i18n.t('home.fbTitle') }}</h2>
+      </div>
+      <a class="tl-btn tl-btn--outline" routerLink="/feedback">{{ i18n.t('home.fbAll') }}</a>
+    </div>
+    <div class="row g-4">
+      @for (f of feedback(); track f.id) {
+        <div class="col-12 col-md-6 col-xl-4"><tl-feedback-card [feedback]="f" /></div>
+      } @empty {
+        <div class="col-12">
+          <tl-empty-state icon="reviews" [title]="i18n.t('home.fbEmptyTitle')">
+            {{ i18n.t('home.fbEmptyText') }}
+            <a routerLink="/feedback">{{ i18n.t('home.fbShare') }}</a>
+          </tl-empty-state>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 8. Social media -->
+<section class="tl-section tl-section--tint" aria-labelledby="social-title">
+  <div class="container-fluid px-3 px-md-5">
+    <span class="tl-eyebrow">{{ i18n.t('home.socialEyebrow') }}</span>
+    <h2 id="social-title" class="tl-heading mb-4">{{ i18n.t('home.socialTitle') }}</h2>
+    <tl-social-links variant="cards" />
+  </div>
+</section>
+
+<!-- 9. Call to action -->
+<section class="cta" aria-labelledby="cta-title">
+  <div class="container-fluid px-3 px-md-5">
+    <div class="cta__box">
+      <div>
+        <h2 id="cta-title" class="cta__title">{{ i18n.t('home.ctaTitle') }}</h2>
+        <p class="cta__text">{{ i18n.t('home.ctaText') }}</p>
+      </div>
+      <div class="d-flex flex-wrap gap-3">
+        <a class="tl-btn tl-btn--dark" routerLink="/contact" fragment="enquiry-form">{{ i18n.t('home.ctaConsult') }}</a>
+        @if (site.whatsappUrl(); as wa) {
+          <a class="tl-btn tl-btn--outline" [href]="wa" target="_blank" rel="noopener noreferrer">{{ i18n.t('home.ctaWhatsapp') }}</a>
+        }
+      </div>
+    </div>
+  </div>
+</section>

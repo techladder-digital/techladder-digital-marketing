@@ -1,0 +1,55 @@
+{
+  "name": "techladder-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TechLadder Digital Marketing — REST API (Node.js, Express, TypeScript, MySQL)",
+  "main": "dist/src/server.js",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/src/server.js",
+    "migrate": "tsx scripts/migrate.ts",
+    "migrate:prod": "node dist/scripts/migrate.js",
+    "admin:create": "tsx scripts/create-admin.ts",
+    "admin:create:prod": "node dist/scripts/create-admin.js",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "jest --runInBand",
+    "test:integration": "jest --runInBand --testPathPatterns=integration"
+  },
+  "dependencies": {
+    "bcryptjs": "3.0.3",
+    "cors": "2.8.6",
+    "dotenv": "18.0.7",
+    "express": "5.3.0",
+    "express-rate-limit": "8.7.1",
+    "helmet": "8.3.0",
+    "jsonwebtoken": "9.0.3",
+    "multer": "2.4.0",
+    "mysql2": "3.24.5",
+    "nodemailer": "10.1.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/cors": "2.8.19",
+    "@types/express": "5.0.6",
+    "@types/jest": "30.0.0",
+    "@types/jsonwebtoken": "9.0.10",
+    "@types/multer": "2.3.0",
+    "@types/node": "22.20.5",
+    "@types/nodemailer": "8.0.2",
+    "@types/supertest": "7.2.1",
+    "eslint": "10.12.0",
+    "globals": "17.13.0",
+    "jest": "30.5.2",
+    "supertest": "7.3.1",
+    "ts-jest": "29.4.14",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.2"
+  }
+}

@@ -1,0 +1,321 @@
+// =====================================================================
+// TechLadder Digital Marketing — global styles
+// Brand palette (only): Black #111111 · White #FFFFFF · Orange #FF7900
+// Muted tones are opacity variants of brand black/white, not new colours.
+// =====================================================================
+@use '@angular/material' as mat;
+
+// Bootstrap CSS (reboot, grid, utilities subsets) and ngx-toastr CSS are loaded via angular.json "styles".
+// No Bootstrap JavaScript / jQuery is used.
+
+:root {
+  --tl-black: #111111;
+  --tl-white: #ffffff;
+  --tl-orange: #ff7900;
+  --tl-orange-soft: rgba(255, 121, 0, 0.12);
+  --tl-ink-70: rgba(17, 17, 17, 0.72);
+  --tl-ink-50: rgba(17, 17, 17, 0.56);
+  --tl-ink-12: rgba(17, 17, 17, 0.12);
+  --tl-ink-06: rgba(17, 17, 17, 0.05);
+  --tl-paper-70: rgba(255, 255, 255, 0.72);
+  --tl-paper-12: rgba(255, 255, 255, 0.12);
+  --tl-radius: 14px;
+  --tl-radius-sm: 10px;
+  --tl-shadow: 0 1px 2px rgba(17, 17, 17, 0.06), 0 8px 24px rgba(17, 17, 17, 0.08);
+  --tl-shadow-hover: 0 2px 4px rgba(17, 17, 17, 0.08), 0 16px 40px rgba(17, 17, 17, 0.14);
+  --tl-font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --tl-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --tl-topbar-h: 68px;
+  --bs-body-font-family: var(--tl-font-body);
+  --bs-body-color: var(--tl-black);
+  --bs-link-color-rgb: 17, 17, 17;
+  --bs-link-hover-color-rgb: 17, 17, 17;
+}
+
+html {
+  color-scheme: light;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$orange-palette,
+        theme-type: light,
+      ),
+      typography: (
+        plain-family: 'Inter',
+        brand-family: 'Poppins',
+      ),
+      density: 0,
+    )
+  );
+  // Pin Material's system colours to the exact brand values.
+  // Orange surfaces carry BLACK text (white on #FF7900 fails WCAG AA contrast).
+  @include mat.theme-overrides(
+    (
+      primary: #ff7900,
+      on-primary: #111111,
+      primary-container: #ffe3cc,
+      on-primary-container: #111111,
+      surface: #ffffff,
+      on-surface: #111111,
+      on-surface-variant: rgba(17, 17, 17, 0.72),
+      outline: rgba(17, 17, 17, 0.38),
+      outline-variant: rgba(17, 17, 17, 0.12),
+      error: #111111,
+    )
+  );
+}
+
+body {
+  margin: 0;
+  font-family: var(--tl-font-body);
+  color: var(--tl-black);
+  background: var(--tl-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, .display-font {
+  font-family: var(--tl-font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.h1 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+.h2 { font-size: clamp(1.6rem, 2.8vw, 2.1rem); }
+.h3 { font-size: 1.5rem; }
+.h4 { font-size: 1.3rem; }
+.h5 { font-size: 1.12rem; }
+.h6 { font-size: 1rem; }
+.h1, .h2, .h3, .h4, .h5, .h6 { font-family: var(--tl-font-display); font-weight: 700; line-height: 1.25; }
+
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Visible, consistent keyboard focus
+:focus-visible {
+  outline: 3px solid var(--tl-orange);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 2000;
+  padding: 10px 16px;
+  background: var(--tl-orange);
+  color: var(--tl-black);
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  &:focus { top: 12px; }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+// ---------------------------------------------------------------- layout
+.tl-section {
+  padding: 72px 0;
+  @media (max-width: 767.98px) { padding: 48px 0; }
+}
+.tl-section--dark {
+  background: var(--tl-black);
+  color: var(--tl-white);
+}
+.tl-section--tint { background: var(--tl-ink-06); }
+
+.tl-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tl-black);
+  &::before {
+    content: '';
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--tl-orange);
+  }
+  .tl-section--dark & { color: var(--tl-white); }
+}
+
+.tl-heading {
+  font-size: clamp(1.7rem, 2.6vw, 2.5rem);
+  margin: 12px 0 12px;
+}
+.tl-lead {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--tl-ink-70);
+  max-width: 720px;
+  .tl-section--dark & { color: var(--tl-paper-70); }
+}
+.text-muted-ink { color: var(--tl-ink-70) !important; }
+.text-orange { color: var(--tl-orange) !important; }
+
+.tl-accent { color: var(--tl-orange); }
+
+// ---------------------------------------------------------------- buttons
+.tl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+  &:hover { transform: translateY(-2px); }
+  &:disabled, &[aria-disabled='true'] { opacity: 0.55; cursor: not-allowed; transform: none; }
+  .mat-icon { font-size: 20px; width: 20px; height: 20px; }
+}
+.tl-btn--primary {
+  background: var(--tl-orange);
+  color: var(--tl-black);
+  box-shadow: 0 6px 18px rgba(255, 121, 0, 0.32);
+  &:hover { color: var(--tl-black); box-shadow: 0 10px 26px rgba(255, 121, 0, 0.42); }
+}
+.tl-btn--dark {
+  background: var(--tl-black);
+  color: var(--tl-white);
+  &:hover { color: var(--tl-white); }
+}
+.tl-btn--outline {
+  background: transparent;
+  color: var(--tl-black);
+  border-color: var(--tl-black);
+  &:hover { background: var(--tl-black); color: var(--tl-white); }
+}
+.tl-btn--outline-light {
+  background: transparent;
+  color: var(--tl-white);
+  border-color: var(--tl-white);
+  &:hover { background: var(--tl-white); color: var(--tl-black); }
+}
+.tl-btn--sm { min-height: 38px; padding: 0 16px; font-size: 0.88rem; }
+
+// ---------------------------------------------------------------- cards
+.tl-card {
+  background: var(--tl-white);
+  border: 1px solid var(--tl-ink-12);
+  border-radius: var(--tl-radius);
+  box-shadow: var(--tl-shadow);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  &:hover { transform: translateY(-4px); box-shadow: var(--tl-shadow-hover); border-color: rgba(255, 121, 0, 0.5); }
+}
+
+.tl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--tl-ink-06);
+  color: var(--tl-black);
+  border: 1px solid var(--tl-ink-12);
+}
+.tl-badge--orange { background: var(--tl-orange-soft); border-color: rgba(255, 121, 0, 0.45); }
+.tl-badge--dark { background: var(--tl-black); color: var(--tl-white); border-color: var(--tl-black); }
+.tl-badge--solid { background: var(--tl-orange); color: var(--tl-black); border-color: var(--tl-orange); }
+
+// ---------------------------------------------------------------- forms
+.tl-form .mat-mdc-form-field { width: 100%; }
+.tl-form .mat-mdc-form-field + .mat-mdc-form-field { margin-top: 14px; }
+.tl-form-panel {
+  background: var(--tl-white);
+  border: 1px solid var(--tl-ink-12);
+  border-radius: var(--tl-radius);
+  padding: 28px;
+  box-shadow: var(--tl-shadow);
+  @media (max-width: 575.98px) { padding: 20px 16px; }
+}
+.tl-field-error {
+  color: var(--tl-black);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  &::before { content: '!'; display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: var(--tl-orange); font-size: 11px; }
+}
+// Material error text: brand black + orange marker for clear, high-contrast errors
+.mat-mdc-form-field-error { color: var(--tl-black) !important; font-weight: 600; }
+.mat-mdc-form-field.mat-form-field-invalid .mdc-notched-outline > * { border-color: var(--tl-orange) !important; border-width: 2px !important; }
+
+.tl-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// ---------------------------------------------------------------- admin
+.tl-admin-page { padding: 24px; @media (max-width: 575.98px) { padding: 16px 12px; } }
+.tl-admin-title { font-size: 1.5rem; margin: 0 0 4px; }
+.tl-table-wrap { overflow-x: auto; border: 1px solid var(--tl-ink-12); border-radius: var(--tl-radius-sm); background: var(--tl-white); }
+.tl-table { width: 100%; border-collapse: collapse; font-size: 0.92rem;
+  th, td { padding: 12px 14px; border-bottom: 1px solid var(--tl-ink-12); text-align: left; vertical-align: top; }
+  th { font-weight: 700; background: var(--tl-ink-06); white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+}
+
+// ---------------------------------------------------------------- toastr (brand)
+.toast-top-right { top: calc(var(--tl-topbar-h) + 12px); right: 12px; }
+.toast-container .ngx-toastr {
+  border-radius: 12px;
+  box-shadow: var(--tl-shadow-hover);
+  background-image: none;
+  padding: 14px 18px;
+  width: 340px;
+  max-width: calc(100vw - 24px);
+  font-family: var(--tl-font-body);
+  &:hover { box-shadow: var(--tl-shadow-hover); }
+}
+.toast-success { background-color: var(--tl-black); color: var(--tl-white); border-left: 6px solid var(--tl-orange); }
+.toast-error { background-color: var(--tl-orange); color: var(--tl-black); }
+.toast-error .toast-close-button { color: var(--tl-black); }
+.toast-info, .toast-warning { background-color: var(--tl-white); color: var(--tl-black); border: 1px solid var(--tl-ink-12); border-left: 6px solid var(--tl-orange); }
+.toast-info .toast-close-button, .toast-warning .toast-close-button { color: var(--tl-black); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

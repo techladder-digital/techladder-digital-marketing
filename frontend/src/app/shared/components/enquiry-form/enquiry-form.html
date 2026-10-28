@@ -1,0 +1,118 @@
+@if (result(); as r) {
+  <div class="success" role="status" aria-live="polite" tabindex="-1">
+    <span class="success__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>
+    <h3>Thank you — your enquiry has been received.</h3>
+    <p>Your reference number is <strong>#{{ r.enquiryId }}</strong>. Our team will review it and get back to you using your preferred contact method.</p>
+    <div class="success__actions">
+      @if (whatsappFollowUp(); as wa) {
+        <a class="tl-btn tl-btn--primary" [href]="wa" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>
+      }
+      <button type="button" class="tl-btn tl-btn--outline" (click)="startAnother()">Send another enquiry</button>
+    </div>
+  </div>
+} @else {
+  <form class="tl-form" [formGroup]="form" (ngSubmit)="submit()" novalidate aria-describedby="enquiry-required-note">
+    <p id="enquiry-required-note" class="note">Fields marked <span aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
+
+    <div class="row g-3">
+      <div class="col-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Full name</mat-label>
+          <input matInput formControlName="fullName" autocomplete="name" required maxlength="120" />
+          @if (error('fullName'); as e) { <mat-error>{{ e }}</mat-error> }
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Business name (optional)</mat-label>
+          <input matInput formControlName="businessName" autocomplete="organization" maxlength="160" />
+          @if (error('businessName'); as e) { <mat-error>{{ e }}</mat-error> }
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Email address</mat-label>
+          <input matInput type="email" formControlName="email" autocomplete="email" required maxlength="190" />
+          @if (error('email'); as e) { <mat-error>{{ e }}</mat-error> }
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Phone number</mat-label>
+          <input matInput type="tel" formControlName="phone" autocomplete="tel" required maxlength="32" placeholder="+91 98765 43210" />
+          @if (error('phone'); as e) { <mat-error>{{ e }}</mat-error> }
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Project type</mat-label>
+          <mat-select formControlName="projectType" required>
+            @for (t of projectTypes; track t[0]) { <mat-option [value]="t[0]">{{ t[1] }}</mat-option> }
+          </mat-select>
+          @if (error('projectType'); as e) { <mat-error>{{ e }}</mat-error> }
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Service</mat-label>
+          <mat-select formControlName="serviceName" required>
+            @for (s of serviceOptions(); track s) { <mat-option [value]="s">{{ s }}</mat-option> }
+          </mat-select>
+          @if (!form.controls.projectType.value) { <mat-hint>Choose a project type to narrow the list</mat-hint> }
+          @if (error('serviceName'); as e) { <mat-error>{{ e }}</mat-error> }
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Budget range (optional)</mat-label>
+          <mat-select formControlName="budgetRange">
+            <mat-option value="">Prefer not to say</mat-option>
+            @for (b of budgets; track b) { <mat-option [value]="b">{{ b }}</mat-option> }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6">
+        <fieldset class="radio-group" [class.radio-group--invalid]="!!error('preferredContactMethod')">
+          <legend>Preferred contact method <span aria-hidden="true">*</span></legend>
+          <mat-radio-group formControlName="preferredContactMethod" aria-label="Preferred contact method">
+            <mat-radio-button value="email">Email</mat-radio-button>
+            <mat-radio-button value="whatsapp">WhatsApp</mat-radio-button>
+            <mat-radio-button value="both">Both</mat-radio-button>
+          </mat-radio-group>
+          @if (error('preferredContactMethod'); as e) { <div class="tl-field-error" role="alert">{{ e }}</div> }
+        </fieldset>
+      </div>
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label>Message</mat-label>
+          <textarea matInput formControlName="message" rows="5" required maxlength="3000"
+                    placeholder="Tell us about your business, goals and timeline"></textarea>
+          <mat-hint align="end">{{ messageLength().length }} / 3000</mat-hint>
+          @if (error('message'); as e) { <mat-error>{{ e }}</mat-error> }
+        </mat-form-field>
+      </div>
+
+      <!-- Honeypot: hidden from people and assistive tech -->
+      <div class="tl-honeypot" aria-hidden="true">
+        <label for="enq-website">Leave this field empty</label>
+        <input id="enq-website" type="text" formControlName="website" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="col-12">
+        <mat-checkbox formControlName="consentToContact" required>
+          I agree to be contacted by TechLadder Digital Marketing about this enquiry. <span aria-hidden="true">*</span>
+        </mat-checkbox>
+        @if (error('consentToContact'); as e) { <div class="tl-field-error mt-1" role="alert">{{ e }}</div> }
+      </div>
+
+      <div class="col-12 d-flex flex-wrap gap-3 align-items-center">
+        <button type="submit" class="tl-btn tl-btn--primary" [disabled]="submitting()" [attr.aria-busy]="submitting()">
+          @if (submitting()) { <span class="spinner" aria-hidden="true"></span> Sending… } @else { Send enquiry }
+        </button>
+        @if (site.whatsappUrl(); as wa) {
+          <a class="wa-alt" [href]="wa" target="_blank" rel="noopener noreferrer">Prefer WhatsApp? Message us directly</a>
+        }
+      </div>
+    </div>
+  </form>
+}

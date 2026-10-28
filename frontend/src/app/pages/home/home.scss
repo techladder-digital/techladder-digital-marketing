@@ -1,0 +1,23 @@
+.hero { background: var(--tl-black); color: var(--tl-white); padding: 72px 0 80px; position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; border: 60px solid rgba(255, 121, 0, .08); pointer-events: none; }
+.hero .tl-eyebrow { color: var(--tl-white); }
+.hero__title { font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: 1.08; margin: 18px 0; font-weight: 800; }
+.hero__sub { font-size: clamp(1.02rem, 1.4vw, 1.2rem); color: var(--tl-paper-70); line-height: 1.7; max-width: 580px; }
+.hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.tl-btn--light-link { color: var(--tl-white); padding: 0 6px; text-decoration: underline; text-decoration-color: var(--tl-orange); text-decoration-thickness: 2px; }
+.tl-btn--light-link:hover { color: var(--tl-orange); }
+.hero__visual { border-radius: 22px; overflow: hidden; border: 1px solid var(--tl-paper-12); box-shadow: 0 30px 70px rgba(0, 0, 0, .45); background: var(--tl-black); }
+.hero__visual img { display: block; width: 100%; height: auto; }
+.section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+.section-head .tl-lead { margin-bottom: 0; }
+.why { display: flex; gap: 16px; padding: 22px; border-radius: var(--tl-radius); border: 1px solid var(--tl-ink-12); height: 100%; transition: border-color .2s; }
+.why:hover { border-color: var(--tl-orange); }
+.why__icon { width: 48px; height: 48px; border-radius: 12px; background: var(--tl-black); color: var(--tl-orange); display: grid; place-items: center; flex-shrink: 0; }
+.why__title { font-size: 1.05rem; margin: 2px 0 6px; }
+.why__text { color: var(--tl-ink-70); margin: 0; line-height: 1.6; font-size: .95rem; }
+.cta { padding: 64px 0; }
+.cta__box { background: var(--tl-orange); color: var(--tl-black); border-radius: 22px; padding: 44px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.cta__title { font-size: clamp(1.6rem, 2.6vw, 2.3rem); margin: 0 0 8px; }
+.cta__text { margin: 0; max-width: 560px; font-size: 1.05rem; }
+.cta .tl-btn--outline { border-color: var(--tl-black); }
+@media (max-width: 575.98px) { .cta__box { padding: 28px 20px; } .hero { padding: 48px 0 56px; } }

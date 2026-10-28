@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="t d">
+  <title id="t">TechLadder digital agency illustration</title>
+  <desc id="d">A website being designed in a browser window, a video advertisement with a play button, a mobile social media post, a growth chart and code brackets.</desc>
+  <defs>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" fill="none" stroke="#FFFFFF" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="540" fill="#111111"/>
+  <rect width="720" height="540" fill="url(#grid)"/>
+  <circle cx="610" cy="90" r="120" fill="#FF7900" fill-opacity="0.10"/>
+  <circle cx="90" cy="470" r="90" fill="#FF7900" fill-opacity="0.08"/>
+
+  <!-- Browser window: website design -->
+  <g transform="translate(70 70)">
+    <rect width="400" height="290" rx="16" fill="#FFFFFF" fill-opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2"/>
+    <path d="M0 16a16 16 0 0 1 16-16h368a16 16 0 0 1 16 16v26H0z" fill="#FFFFFF" fill-opacity="0.10"/>
+    <circle cx="22" cy="21" r="5" fill="#FF7900"/><circle cx="40" cy="21" r="5" fill="#FFFFFF" fill-opacity="0.5"/><circle cx="58" cy="21" r="5" fill="#FFFFFF" fill-opacity="0.3"/>
+    <rect x="86" y="13" width="220" height="16" rx="8" fill="#FFFFFF" fill-opacity="0.12"/>
+    <rect x="24" y="62" width="200" height="16" rx="6" fill="#FFFFFF"/>
+    <rect x="24" y="88" width="160" height="16" rx="6" fill="#FFFFFF" fill-opacity="0.85"/>
+    <rect x="24" y="118" width="190" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.35"/>
+    <rect x="24" y="134" width="170" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.35"/>
+    <rect x="24" y="160" width="96" height="30" rx="15" fill="#FF7900"/>
+    <rect x="130" y="160" width="96" height="30" rx="15" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="250" y="62" width="126" height="128" rx="12" fill="#FF7900" fill-opacity="0.18" stroke="#FF7900" stroke-opacity="0.6"/>
+    <path d="M272 168l28-40 22 26 14-16 22 30z" fill="#FF7900"/>
+    <circle cx="344" cy="92" r="10" fill="#FFFFFF" fill-opacity="0.8"/>
+    <rect x="24" y="212" width="108" height="56" rx="10" fill="#FFFFFF" fill-opacity="0.08"/>
+    <rect x="146" y="212" width="108" height="56" rx="10" fill="#FFFFFF" fill-opacity="0.08"/>
+    <rect x="268" y="212" width="108" height="56" rx="10" fill="#FFFFFF" fill-opacity="0.08"/>
+    <rect x="36" y="226" width="40" height="8" rx="4" fill="#FF7900"/>
+    <rect x="158" y="226" width="40" height="8" rx="4" fill="#FF7900"/>
+    <rect x="280" y="226" width="40" height="8" rx="4" fill="#FF7900"/>
+    <rect x="36" y="242" width="80" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.3"/>
+    <rect x="158" y="242" width="80" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.3"/>
+    <rect x="280" y="242" width="80" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.3"/>
+  </g>
+
+  <!-- Video ad card -->
+  <g transform="translate(420 250)">
+    <rect width="230" height="150" rx="16" fill="#FF7900"/>
+    <rect x="14" y="14" width="202" height="98" rx="10" fill="#111111"/>
+    <circle cx="115" cy="63" r="28" fill="#FF7900"/>
+    <path d="M106 48v30l25-15z" fill="#111111"/>
+    <rect x="14" y="124" width="150" height="8" rx="4" fill="#111111" fill-opacity="0.35"/>
+    <rect x="14" y="124" width="90" height="8" rx="4" fill="#111111"/>
+    <text x="216" y="134" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#111111">AI AD</text>
+  </g>
+
+  <!-- Phone with social post -->
+  <g transform="translate(520 60)">
+    <rect width="130" height="170" rx="20" fill="#111111" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="44" y="10" width="42" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.4"/>
+    <circle cx="26" cy="36" r="9" fill="#FF7900"/>
+    <rect x="42" y="31" width="60" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.6"/>
+    <rect x="12" y="54" width="106" height="72" rx="8" fill="#FFFFFF" fill-opacity="0.12"/>
+    <path d="M24 114l24-30 18 20 12-12 26 22z" fill="#FFFFFF" fill-opacity="0.55"/>
+    <path d="M18 140c0-6 8-10 12-4 4-6 12-2 12 4 0 7-12 14-12 14s-12-7-12-14z" fill="#FF7900"/>
+    <rect x="52" y="140" width="56" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.35"/>
+  </g>
+
+  <!-- Growth chart -->
+  <g transform="translate(70 395)">
+    <rect width="300" height="100" rx="14" fill="#FFFFFF" fill-opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.2"/>
+    <rect x="24" y="62" width="26" height="22" rx="4" fill="#FFFFFF" fill-opacity="0.35"/>
+    <rect x="62" y="50" width="26" height="34" rx="4" fill="#FFFFFF" fill-opacity="0.45"/>
+    <rect x="100" y="38" width="26" height="46" rx="4" fill="#FFFFFF" fill-opacity="0.6"/>
+    <rect x="138" y="24" width="26" height="60" rx="4" fill="#FF7900"/>
+    <path d="M190 74l30-22 24 12 36-38" fill="none" stroke="#FF7900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M268 22h14v14" fill="none" stroke="#FF7900" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Code brackets -->
+  <g transform="translate(420 420)" font-family="Consolas, 'Courier New', monospace" font-weight="700">
+    <rect width="230" height="70" rx="14" fill="#FFFFFF"/>
+    <text x="22" y="46" font-size="30" fill="#FF7900">&lt;/&gt;</text>
+    <rect x="96" y="22" width="110" height="8" rx="4" fill="#111111"/>
+    <rect x="96" y="40" width="80" height="8" rx="4" fill="#111111" fill-opacity="0.4"/>
+  </g>
+</svg>
